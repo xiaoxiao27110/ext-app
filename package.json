@@ -1,0 +1,75 @@
+{
+  "name": "onedeck-apps",
+  "displayName": "OneDeck Apps",
+  "description": "Open release-controlled OneDeck web applications from VS Code.",
+  "version": "0.1.0",
+  "publisher": "xiaoxiao27110",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaoxiao27110/ext-app.git"
+  },
+  "engines": {
+    "vscode": "^1.121.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "extensionKind": [
+    "workspace"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onView:oneDeckApps.applications"
+  ],
+  "files": [
+    "dist/extension.js",
+    "dist/extension.js.map",
+    "media/onedeck-apps.svg",
+    "media/opencode.svg",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "oneDeckApps",
+          "title": "OneDeck",
+          "icon": "media/onedeck-apps.svg"
+        }
+      ]
+    },
+    "views": {
+      "oneDeckApps": [
+        {
+          "id": "oneDeckApps.applications",
+          "name": "Applications"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "build": "node esbuild.mjs",
+    "build:production": "node esbuild.mjs --production",
+    "compile:test": "tsc -p tsconfig.test.json",
+    "test:unit": "npm run compile:test && mocha --ui tdd \"out-test/test/unit/**/*.test.js\"",
+    "test:extension": "npm run build && npm run compile:test && vscode-test",
+    "test": "npm run check && npm run test:unit && npm run test:extension",
+    "package": "npm run check && npm run build:production && vsce package --allow-missing-repository --skip-license --out onedeck-apps.vsix",
+    "vscode:prepublish": "npm run check && npm run build:production"
+  },
+  "devDependencies": {
+    "@types/mocha": "10.0.10",
+    "@types/node": "24.13.3",
+    "@types/vscode": "1.120.0",
+    "@vscode/test-cli": "0.0.15",
+    "@vscode/test-electron": "3.0.0",
+    "@vscode/vsce": "3.9.2",
+    "esbuild": "0.28.1",
+    "mocha": "11.7.6",
+    "typescript": "7.0.2"
+  }
+}

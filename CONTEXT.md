@@ -1,4 +1,4 @@
-# Application Launcher
+# OneDeck Apps
 
 This context describes the OneDeck extension that presents approved web applications inside VS Code while leaving application hosting and lifecycle management to the deployment environment.
 

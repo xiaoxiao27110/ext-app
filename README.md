@@ -22,8 +22,33 @@ The workspace extension host requires these environment variables:
 - `CONTAINER_HOST`: externally reachable Docker host name or IP address;
 - `OPENCODE_WEB_PORT`: host port mapped to the container's OpenCode Web port.
 
-The initial release constructs an HTTP endpoint from these values. If either value is missing or invalid, OpenCode Web remains visible in the catalog but is disabled with a configuration message.
+The initial release constructs an HTTP Runtime Endpoint from these values. If either value is missing or invalid, OpenCode Web remains visible in the Application Catalog but is disabled with a configuration message.
+
+The extension validates configuration only. It does not poll or otherwise test whether OpenCode Web is currently online.
+
+## Development
+
+Requirements:
+
+- Node.js and npm;
+- VS Code 1.121 or later.
+
+Common commands:
+
+```bash
+npm install
+npm run check
+npm run build
+npm run test:unit
+npm run test:extension
+npm test
+npm run package
+```
+
+`npm run test:extension` downloads VS Code 1.121 by default. To reuse an existing VS Code installation, set `VSCODE_EXECUTABLE_PATH` to its executable before running the command.
+
+The packaged artifact is `onedeck-apps.vsix`.
 
 ## Status
 
-The project is currently in design and initial setup.
+The Launcher Extension includes OpenCode Web in its Application Catalog.
