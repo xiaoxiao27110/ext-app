@@ -19,6 +19,11 @@
   "extensionKind": [
     "workspace"
   ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
   "main": "./dist/extension.js",
   "activationEvents": [
     "onView:oneDeckApps.applications"
